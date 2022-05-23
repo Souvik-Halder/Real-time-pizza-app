@@ -8,6 +8,9 @@ app.get("/",(req,res)=>{
 res.render('home');
 });
 
+//Assests 
+
+app.use(express.static('public'));
 
 //set template engine
 app.use(expresslayout);
