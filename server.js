@@ -59,9 +59,10 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))//To get urlencoded data
 
-//Global middleware
+//Global middleware//To get the sessions in front-end in the ejs files
 app.use((req,res,next)=>{
      res.locals.session=req.session;
+     res.locals.user=req.user;
      next()
 })
 

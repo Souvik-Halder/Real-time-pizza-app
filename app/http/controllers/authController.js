@@ -61,6 +61,15 @@ function authController() {
       console.log(req.body);
     },
     postlogin(req, res, next) {
+        const { name, email, password } = req.body;
+        //Validate request
+        if ( !email || !password) {
+          req.flash("error", "All fiels are requried");
+          
+          return res.redirect("/login");
+        }
+
+
       passport.authenticate("local", (err, user, info) => {
         if (err) {
           req.flash("error", info.message);
@@ -79,6 +88,9 @@ function authController() {
         });
       })(req,res,next)
     },
+    logout(req,res){
+        return res.redirect('/login');
+    }
   };
 }
 
