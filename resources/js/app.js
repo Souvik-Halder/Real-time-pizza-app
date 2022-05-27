@@ -7,7 +7,7 @@ function updateCart(pizza){
     axios.post('/update-cart',pizza).then(res=>{
         console.log(res);
         cartCounter.innerText=res.data.totalQty;
-        console.log(cartCounter);
+        // console.log(cartCounter);
     })
 }
 

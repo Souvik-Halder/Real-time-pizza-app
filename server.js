@@ -9,6 +9,10 @@ const mongoose=require('mongoose');
 const session=require('express-session');
 const flash=require('express-flash');
 var MongoDBStore = require('connect-mongodb-session')(session);
+const passport=require('passport');
+
+
+
 
 
 //Database connection
@@ -23,7 +27,14 @@ mongoose.connect(url)
 });
 const connection=mongoose.connect;
 
-//Session Stire
+//passport config //for the login
+const passportInit=require('./app/config/passport');
+passportInit(passport);
+
+app.use(session({ secret: 'COOKIE_SECRET' }))
+app.use(passport.initialize());
+app.use(passport.session());
+
 let mongoStore=new MongoDBStore({
     uri:url,
     collection:'sessions'
@@ -46,6 +57,7 @@ app.use(flash()); //for flash this function is called cookie session related
 
 app.use(express.static('public'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }))//To get urlencoded data
 
 //Global middleware
 app.use((req,res,next)=>{
