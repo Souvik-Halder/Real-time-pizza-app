@@ -3,6 +3,7 @@ body {
   -webkit-font-smoothing: antialiased;
   color: #232323;
   height: 4000px;
+  width: 100%;
 }
 
 nav li:last-child a {
