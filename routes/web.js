@@ -7,8 +7,8 @@ function initRoutes(app){
     //To go the login and register we neec to 
         app.get("/",homeController().index);
         app.get('/cart',cartController().index);  
-        app.get('/login',authController().login);
-        app.get('/register', authController().register)
+        app.get('/login',guest,authController().login);
+        app.get('/register', guest,authController().register)
         app.post('/update-cart',cartController().update);
         app.post('/register',authController().postRegister);
         app.post('/login',authController().postlogin);

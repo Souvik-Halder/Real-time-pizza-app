@@ -88,9 +88,12 @@ function authController() {
         });
       })(req,res,next)
     },
-    logout(req,res){
-        return res.redirect('/login');
-    }
+    logout(req, res, next) {
+        req.logout(function(err) {
+          if (err) { return next(err); }
+          res.redirect('/login');
+        });
+      }
   };
 }
 
